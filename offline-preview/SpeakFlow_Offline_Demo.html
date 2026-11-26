@@ -1,0 +1,1179 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SpeakFlow · 离线预览</title><style>:root{font-family:Inter,"DM Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,"Microsoft YaHei",sans-serif;font-size:14px;font-weight:400;color:#24324b;background:#f7f8fb;font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}*{box-sizing:border-box}body{margin:0}button,input,textarea{font:inherit}button{cursor:pointer}button:disabled{opacity:.6;cursor:not-allowed}h1,h2,h3,p{margin-top:0}button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #aad5d1;outline-offset:2px}::selection{background:#d0efeb}svg{flex-shrink:0}.shell{min-height:100vh;display:flex}.sidebar{position:fixed;left:0;top:0;bottom:0;width:252px;background:#fff;border-right:1px solid #e8ecf2;display:flex;flex-direction:column;z-index:15;padding:28px 16px 18px}.brand{font-weight:800;font-size:22px;letter-spacing:-.95px;display:flex;align-items:center;gap:11px;padding:0 11px;color:#182942}.brand-mark{background:#105e64;color:white;display:flex;align-items:center;justify-content:center;width:39px;height:39px;border-radius:11px;box-shadow:0 4px 12px #105e6424}.sidebar-group-title{font-size:10px;letter-spacing:1.6px;color:#a0aabc;font-weight:800;margin:47px 12px 13px}.nav{display:grid;gap:6px}.nav-link{border:0;width:100%;display:flex;align-items:center;gap:13px;color:#68758b;background:transparent;text-align:left;padding:13px 14px;border-radius:10px;font-weight:600;font-size:13px}.nav-link.active{background:#e8f3f1;color:#0b6267}.nav-link:hover:not(.active){background:#f5f7fa;color:#263448}.sidebar-fill{flex:1}.sidebar-card{border-radius:13px;padding:20px 18px;background:#eaf4f1;min-height:166px;margin:0 1px 24px;overflow:hidden;position:relative}.pill{display:inline-block;border-radius:999px;padding:5px 9px;font-size:10px;color:#147572;background:#def2ed;font-weight:800;letter-spacing:.5px}.sidebar-card .pill{background:#fff}.sidebar-card-title{font-family:"DM Sans",sans-serif;font-size:22px;line-height:1.23;letter-spacing:-1px;font-weight:800;margin-top:18px;position:relative}.sidebar-card-meta{font-size:12px;color:#58807f;margin-top:10px}.side-account{background:transparent;border:0;display:flex;align-items:center;gap:10px;width:100%;padding:12px 8px;color:#6c7890;text-align:left;border-top:1px solid #eff1f4}.avatar{width:34px;height:34px;display:grid;place-items:center;background:#e6e7f4;color:#6c6ba2;border-radius:50%;font-weight:800}.avatar.small{width:30px;height:30px;font-size:12px}.account-name{flex:1;color:#26354d;font-size:12px;font-weight:700}.account-name small{display:block;color:#929cac;font-size:10px;margin-top:4px}.main-wrap{margin-left:252px;min-width:0;width:calc(100% - 252px)}.topbar{height:76px;background:#fff;border-bottom:1px solid #e8ecf2;display:flex;justify-content:space-between;align-items:center;padding:0 45px}.breadcrumb{display:flex;align-items:center;gap:9px;color:#8a95a5;font-size:12px}.breadcrumb b{color:#35435c;font-weight:700}.top-right{display:flex;align-items:center;gap:20px}.date-label{color:#a6afbd;font-size:10px;font-weight:800;letter-spacing:1px}.mode-tag{color:#a16a1d;background:#fff4df;font-size:11px;padding:7px 11px;border-radius:100px;font-weight:700}.page{padding:35px 45px 80px;max-width:1500px;margin:auto}.page-head{margin-bottom:28px}.eyebrow{font-weight:800;font-size:10px;letter-spacing:1.65px;color:#1c8182}.page-head h1{font-size:32px;letter-spacing:-1.3px;color:#1e304a;margin:12px 0 9px;line-height:1.25}.page-head p,.lesson-header p{color:#8b96a6;font-size:13px;line-height:1.7;margin-bottom:0}.accent-dot{color:#148080}.hero{background:linear-gradient(120deg,#0b5b60,#0e696c 65%,#1b7674);border-radius:17px;min-height:248px;color:white;display:flex;justify-content:space-between;overflow:hidden;position:relative;padding:32px 38px;margin-bottom:22px}.hero-main{position:relative;z-index:1}.hero-kicker{font-size:11px;letter-spacing:.4px;color:#d2eeeb;font-weight:700;display:flex;align-items:center;gap:8px;margin-bottom:22px}.light-dot{width:7px;height:7px;border-radius:100%;background:#a0ead9}.hero h2{font-size:28px;letter-spacing:-1px;max-width:480px;line-height:1.18;margin-bottom:11px}.hero p{color:#b8deda;font-size:12px;margin-bottom:22px}.hero-symbol{align-self:center;justify-self:end;opacity:.17;transform:rotate(-12deg) scale(1.8);margin-right:70px}.btn{border:0;padding:12px 16px;border-radius:9px;display:inline-flex;align-items:center;justify-content:center;gap:9px;font-size:12px;font-weight:800;transition:filter .2s,transform .2s;white-space:nowrap}.btn:hover:not(:disabled){filter:brightness(.96);transform:translateY(-1px)}.btn.primary{background:#0e6a6b;color:#fff}.btn.white{background:#fff;color:#155f64}.btn.outline{border:1px solid #e1e7ed;background:white;color:#466076}.btn.full{width:100%}.stat-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px;margin-bottom:40px}.stat-card{background:white;border:1px solid #eaf0f4;border-radius:13px;padding:19px 21px;min-height:130px;position:relative}.stat-card .stat-icon{width:39px;height:39px;display:grid;place-items:center;color:#13827e;background:#eaf5f2;border-radius:10px;float:right}.stat-card>span{color:#8c97a9;font-size:12px;font-weight:600}.stat-card>div:last-child{margin-top:24px;display:flex;align-items:baseline;gap:5px}.stat-card b{font-size:27px;letter-spacing:-1px;color:#23364d}.stat-card small{color:#8a98a7;font-size:12px}.section-heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:19px}.section-heading h2{font-size:19px;letter-spacing:-.4px;margin-bottom:7px}.section-heading p{font-size:12px;color:#99a2af;margin-bottom:0}.link-button{border:0;background:none;display:flex;align-items:center;gap:8px;color:#117576;font-size:12px;font-weight:800}.lesson-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}.lesson-tile{border:1px solid #edf0f4;background:white;padding:21px;text-align:left;border-radius:13px;min-height:200px;display:flex;flex-direction:column;transition:box-shadow .2s,transform .2s}.lesson-tile:hover{box-shadow:0 10px 24px #22334a0f;transform:translateY(-2px)}.tile-top{display:flex;justify-content:space-between;align-items:center}.tile-day{color:#218080;font-size:10px;font-weight:900;letter-spacing:.75px}.tile-level{color:#8697ad;background:#f4f6f9;padding:5px 8px;font-size:10px;border-radius:100px}.lesson-tile h3{font-size:15px;font-weight:800;line-height:1.45;letter-spacing:-.3px;margin:20px 0 8px;min-height:48px}.lesson-tile p{font-size:11px;color:#9aa4b0}.tile-bottom{margin-top:auto;padding-top:13px;border-top:1px solid #edf1f4;color:#137577;font-size:11px;display:flex;align-items:center;justify-content:space-between;font-weight:800}.info-banner{margin-top:27px;background:#eaf5f2;color:#286967;display:flex;align-items:flex-start;gap:14px;padding:20px;border-radius:12px}.info-banner b{font-size:13px}.info-banner p{margin:6px 0 0;color:#698b89;font-size:12px;line-height:1.7}.back-link{border:0;padding:0;background:none;display:flex;align-items:center;gap:6px;color:#8998a8;font-size:12px;font-weight:600;margin-bottom:21px}.lesson-header{display:flex;justify-content:space-between;gap:20px;align-items:flex-start}.lesson-header h1{font-size:30px;color:#21324d;letter-spacing:-1px;margin:11px 0 6px}.lesson-date{font-size:11px;color:#9ba8b9;background:#fff;padding:10px 12px;border-radius:100px}.dot-sep{margin:0 7px;color:#b1baca}.progress-bar{height:5px;background:#e9eeef;border-radius:100px;overflow:hidden;margin-top:28px}.progress-bar span{display:block;background:#288f87;height:100%;border-radius:100px;transition:width .3s}.progress-caption{text-align:right;color:#8c9aa9;font-size:10px;margin:7px 0 23px}.study-tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px;margin-bottom:22px}.study-tab{background:white;border:1px solid #e7edf0;padding:13px 11px;border-radius:11px;display:flex;align-items:center;text-align:left;gap:11px;min-width:0}.study-tab.selected{border-color:#0d7f7b;background:#ecf7f5}.step-num{font-size:11px;font-weight:800;color:#16827d}.step-title{font-size:12px;font-weight:800;color:#30445a;white-space:nowrap}.step-title small{display:block;font-size:10px;color:#9ca8b5;font-weight:500;margin-top:5px}.content-layout{display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:19px;align-items:start}.work-panel{background:#fff;border:1px solid #e8edf1;border-radius:15px;padding:30px 33px;min-width:0}.panel-heading{display:flex;align-items:start;justify-content:space-between;gap:10px;padding-bottom:24px;border-bottom:1px solid #edf0f4;margin-bottom:24px}.panel-heading h2{font-size:23px;margin:9px 0 0;color:#24384f}.panel-heading .panel-desc{color:#8c9aa9;font-size:12px;margin-top:9px;margin-bottom:0;line-height:1.6}.panel-tools{display:flex;gap:8px;flex-wrap:wrap}.tool-btn,.icon-button{display:flex;align-items:center;justify-content:center;gap:6px;border:1px solid #e9edf1;background:#fff;color:#66818c;padding:9px 10px;border-radius:8px;font-size:11px;font-weight:700}.icon-button{width:34px;height:34px;padding:0}.reading-body{display:flex;flex-direction:column}.segment{display:grid;grid-template-columns:29px minmax(0,1fr) 19px;gap:11px;align-items:start;border-bottom:1px solid #f0f2f5;padding:0 0 19px;margin-bottom:19px}.segment:last-child{border-bottom:0}.segment-audio{width:26px;height:26px;border:0;border-radius:100%;color:#1d7779;background:#eaf6f3;display:grid;place-items:center;margin-top:2px}.en-text{font-family:"DM Sans",Georgia,serif;font-size:16.5px;letter-spacing:.01px;line-height:1.84;margin:0;color:#2c394e}.zh-text{font-size:13px;line-height:1.9;color:#8b98a9;margin:8px 0 0}.segment-no{font-size:10px;color:#c2cad3;text-align:right;margin-top:7px}.section-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:20px;padding-top:20px;border-top:1px solid #eef1f4}.right-panel{display:grid;gap:17px}.right-card{background:#fff;border:1px solid #e8edf1;border-radius:13px;padding:23px 19px}.right-card-head{display:flex;justify-content:space-between;font-size:9px;letter-spacing:1px;font-weight:900;color:#2b8885}.right-card h3{font-size:16px;margin:12px 0 22px}.right-progress{display:grid;gap:21px}.right-progress button{border:0;background:transparent;display:flex;align-items:center;gap:11px;text-align:left;color:#8998a8;font-size:12px}.right-progress button.now{color:#167978;font-weight:800}.right-progress .is-done{color:#20968a}.quote-card{padding:21px;border-radius:13px;background:#e5f3f0}.quote-icon{color:#16827f;margin-bottom:10px}.quote-card p{font-family:Georgia,serif;font-size:16px;line-height:1.4;letter-spacing:-.2px;margin:0 0 12px;color:#256361}.quote-card small{font-size:10px;color:#75968f}.right-card.compact b{font-size:13px}.rate-pills{display:flex;gap:7px;align-items:center;flex-wrap:wrap}.compact-pills{margin-top:15px}.rate-pills button{border:1px solid #e5eaed;padding:7px 10px;background:white;border-radius:7px;font-size:11px;color:#7d8a9d}.rate-pills button.active{background:#116d6d;color:white;border-color:#116d6d}.tiny{font-size:10px;line-height:1.7;color:#9ba6b2}.word-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.word-card{background:#fff;border:1px solid #e8edf0;border-radius:10px;padding:16px;text-align:left;display:flex;justify-content:space-between;align-items:center;gap:8px}.word-card.chosen{border-color:#15918e;background:#f3fbfa}.word-card b{display:block;font-size:15px;color:#2a3b52}.word-card small{display:block;color:#43877e;margin-top:5px;font-size:12px}.word-card>span{font-size:11px;color:#8e9aab;text-align:right}.word-detail{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#f0f8f5;padding:18px;margin-top:14px;border-radius:11px}.word-detail h3{margin:9px 0 7px;font-size:21px}.word-detail h3 span{font-weight:500;color:#5e8f88;font-size:13px}.word-detail p{font-size:12px;color:#748b89;margin:0}.detail-actions,.action-row{display:flex;align-items:center;gap:9px;flex-wrap:wrap}.subheading{margin:29px 0 18px;font-size:17px}.expressions{display:grid;gap:0}.expression{display:flex;gap:13px;align-items:start;padding:18px 0;border-bottom:1px solid #edf1f3}.expression-index{font-size:11px;color:#81a4a1;font-weight:800;margin-top:2px}.expression>div{flex:1}.expression b{font-size:14px}.expression p{margin:7px 0 0}.exp-zh{font-size:12px;color:#6c8191}.exp-example{font-size:12px;color:#8f9aa8;font-style:italic}.rate-control{display:flex;gap:13px;align-items:center;background:#f4f8f7;padding:14px;border-radius:10px;flex-wrap:wrap;margin-bottom:20px}.rate-control b{font-size:12px;margin-right:auto}.shadow-list{display:grid;gap:11px}.shadow-line{display:flex;align-items:center;gap:13px;padding:14px 15px;border:1px solid #edf1f3;border-radius:10px}.shadow-line>span{font-size:11px;color:#a4b2bd}.shadow-line p{font-size:14px;line-height:1.6;flex:1;margin:0}.substitution-card{border:1px solid #edf0f2;border-radius:13px;padding:26px;min-height:280px}.substitution-card>.pill{float:right}.substitution-card h2{font-size:23px;margin:38px 0 13px;color:#1d334a}.substitution-card p{font-size:12px;color:#8f9aaa}.answer-preview{padding:15px 17px;border:1px solid #d3e8e1;background:#f0f9f6;border-radius:9px;margin:18px 0;display:grid;gap:8px}.answer-preview b{font-size:15px;color:#185f61;font-weight:700}.answer-preview span,.answer-preview small{font-size:12px;color:#718d87}.substitution-card .action-row{margin-top:40px}.question-tabs{display:flex;gap:7px;margin-bottom:18px}.question-tabs button{padding:9px 13px;border:1px solid #e4ebef;border-radius:9px;font-size:11px;background:#fff;color:#8192a1;font-weight:700}.question-tabs button.chosen{background:#edf7f4;color:#0e6e6b;border-color:#7cb7aa}.question-card{background:#f0f7f5;border-radius:12px;padding:24px;margin-bottom:19px}.question-card h2{font-size:21px;color:#214b4c;line-height:1.5;margin:12px 0}.question-card p{font-size:12px;color:#7e9a95;margin:0}.answer-box{border:1px solid #e6edf1;border-radius:12px;padding:17px}.answer-label{display:flex;gap:8px;align-items:center;color:#39556a;margin-bottom:12px}.answer-label span{margin-left:auto;font-size:11px;color:#a8b0bb}.answer-box textarea{resize:vertical;min-height:135px;width:100%;border:0;outline:0;font-family:Inter,Arial,sans-serif;font-size:14px;line-height:1.7;color:#2b3d54}.answer-box textarea::placeholder{color:#b1bbc7}.mic-controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.mic-controls>span{font-size:10px;color:#a2aeb8}.mic-controls .recording{color:#a7384a;border-color:#f0c4c8;background:#fff3f4}.submit{margin-top:17px}.feedback{margin-top:22px;padding:23px;border:1px solid #d9e9df;border-radius:12px;background:#f8fcf9}.feedback h3{margin:11px 0}.feedback p{font-size:13px;line-height:1.7;color:#526b64}.feedback .retry-text{font-size:12px}.search-wrap{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #e9edf1;padding:0 15px;border-radius:9px;max-width:450px;margin-bottom:18px;color:#8c99ab}.search-wrap input{border:0;outline:none;width:100%;padding:15px 0;background:transparent}.archive-list{background:#fff;border:1px solid #edf0f3;border-radius:13px;overflow:hidden}.archive-row{padding:17px 22px;width:100%;display:flex;align-items:center;gap:18px;border:0;background:white;border-bottom:1px solid #eff1f5;text-align:left;color:#9ca6b3}.archive-row:last-child{border-bottom:0}.archive-row:hover{background:#f8fbfb}.day-square{border-radius:10px;background:#e8f4f1;color:#167875;padding:15px;font-size:15px;font-weight:900}.archive-detail{flex:1;min-width:0}.archive-detail b{font-size:14px;display:block;color:#2c4057}.archive-detail small{display:block;color:#96a3b2;margin-top:5px}.review-list{display:grid;gap:10px}.review-row{background:white;border:1px solid #e9eef1;padding:20px;display:flex;align-items:center;justify-content:space-between;gap:15px;border-radius:11px}.review-row h3{margin:0 0 8px}.review-row p{font-size:12px;color:#94a1b0;margin:0}.empty{text-align:center;padding:70px;background:#fff;border-radius:13px;border:1px solid #e9edf1;display:grid;justify-items:center;gap:10px;color:#97a5b1}.empty h2{font-size:18px;color:#2d4357;margin:5px 0}.empty p{font-size:12px}.settings-card{padding:30px;background:white;border-radius:12px;max-width:720px;border:1px solid #e8edf1}.settings-card h3{margin:0 0 13px}.settings-card h3:not(:first-child){margin-top:30px}.settings-card p{color:#95a3b0;font-size:12px}.warning{display:flex;align-items:center;gap:10px;padding:13px 18px;background:#fff1ed;color:#a64d36;border:1px solid #ffdace;border-radius:10px;margin-bottom:20px;font-size:12px}.warning button{margin-left:auto;border:0;background:transparent;color:inherit}.login-screen{min-height:100vh;display:grid;grid-template-columns:minmax(420px,50%) 1fr;background:#fff}.login-card{width:min(410px,90%);margin:auto}.brand.large{font-size:25px;padding:0;margin-bottom:44px}.login-card h1{font-size:35px;line-height:1.38;letter-spacing:-1.6px;margin-bottom:12px;color:#1f3047}.muted{font-size:13px;color:#8d99a9}.login-form{margin-top:35px;display:grid;gap:17px}.login-form label{color:#64758a;font-size:12px;font-weight:700}.login-form input{margin-top:8px;border:1px solid #e4e9ef;border-radius:9px;padding:13px 14px;display:block;width:100%;background:white;color:#283b53}.login-form .btn{margin-top:8px;width:100%;font-size:13px;padding:15px}.or-line{text-align:center;color:#aab3bf;font-size:11px;margin:25px 0}.login-card>.btn.outline{padding:15px}.login-card>.tiny{margin-top:20px}.error{font-size:12px;color:#ac3545;padding:12px;border-radius:8px;background:#fff2f3}.login-aside{background:#0d6265;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:12%;color:white;position:relative;overflow:hidden}.login-aside>*:not(.decor-circle){position:relative;z-index:1}.top-note{font-size:11px;font-weight:800;letter-spacing:2px;color:#aee5dc}.login-quote{font-family:Georgia,serif;font-size:clamp(29px,3.5vw,54px);line-height:1.25;margin-top:35px;max-width:570px;letter-spacing:-1px}.login-aside p{color:#ace2d7;margin-top:34px}.decor-circle{position:absolute;width:500px;height:500px;border:75px solid #2a8687;border-radius:100%;right:-200px;bottom:-170px;opacity:.35}.hamburger{display:none;border:0;background:transparent}.mobile-shade{display:none}
+@media(max-width:1260px){.lesson-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.study-tabs{grid-template-columns:repeat(3,minmax(0,1fr))}.content-layout{grid-template-columns:minmax(0,1fr) 210px}.page{padding-left:30px;padding-right:30px}.topbar{padding:0 30px}}
+@media(max-width:990px){.sidebar{width:218px}.main-wrap{margin-left:218px;width:calc(100% - 218px)}.content-layout{grid-template-columns:1fr}.right-panel{grid-template-columns:repeat(2,minmax(0,1fr))}.right-panel .right-card.compact{grid-column:span 2}.study-tabs{grid-template-columns:repeat(5,minmax(0,1fr))}.step-title small{display:none}.study-tab{justify-content:center}.hero-symbol{margin-right:10px}}
+@media(max-width:730px){.sidebar{transform:translateX(-100%);transition:transform .2s;width:260px}.sidebar.mobile-open{transform:translateX(0)}.mobile-shade{display:block;position:fixed;inset:0;background:#10263890;z-index:14}.main-wrap{margin-left:0;width:100%}.hamburger{display:grid;place-items:center}.topbar{height:65px;padding:0 20px}.top-right .date-label{display:none}.mode-tag{font-size:9px}.page{padding:25px 17px 60px}.page-head h1{font-size:25px}.hero{padding:28px 25px;min-height:236px}.hero h2{font-size:23px;max-width:310px}.hero-symbol{display:none}.stat-grid{gap:9px}.stat-card{padding:16px 12px;min-height:119px}.stat-card>span{font-size:10px}.stat-card b{font-size:24px}.stat-card .stat-icon{width:29px;height:29px}.lesson-grid{gap:10px}.lesson-tile{padding:15px;min-height:188px}.lesson-tile h3{font-size:13px}.study-tabs{display:flex;gap:5px;overflow-x:auto;padding-bottom:4px}.study-tab{min-width:112px;padding:11px}.step-title{font-size:11px}.work-panel{padding:24px 18px}.panel-heading{flex-wrap:wrap}.panel-tools{width:100%}.panel-heading h2{font-size:20px}.reading-body .en-text{font-size:15px}.reading-body .zh-text{font-size:12px}.segment{grid-template-columns:23px minmax(0,1fr);gap:7px}.segment-no{display:none}.section-footer{align-items:stretch;flex-direction:column-reverse}.section-footer .btn{width:100%}.right-panel{grid-template-columns:1fr}.right-panel .right-card.compact{grid-column:auto}.right-card{padding:18px}.word-grid{grid-template-columns:1fr}.login-screen{grid-template-columns:1fr}.login-aside{display:none}.login-card{padding:30px 0}.login-card h1{font-size:30px}.review-row{flex-direction:column;align-items:start}}
+@media(max-width:390px){.top-right .mode-tag{display:none}.lesson-grid{grid-template-columns:1fr}.stat-grid{grid-template-columns:1fr 1fr}.stat-grid .stat-card:last-child{grid-column:span 2}}
+</style></head><body><div id="root"></div><script id="seed" type="application/json">[
+  {
+    "day": 22,
+    "title": "Working Across Time Zones",
+    "date": "2026-11-18",
+    "segments": [
+      {
+        "en": "Our Java development team recently started working with colleagues in Germany and the United States. Although everyone was experienced, coordinating our schedules turned out to be more challenging than expected.",
+        "zh": "最近，我们的 Java 开发团队开始与德国和美国的同事合作。虽然大家都很有经验，但协调工作时间比预想的更有挑战性。"
+      },
+      {
+        "en": "Last Monday, our project manager scheduled a meeting for 9 p.m. Beijing time. It was convenient for some team members, but several developers had already finished their working day.",
+        "zh": "上周一，项目经理安排了一场北京时间晚上九点的会议。这个时间对部分成员比较方便，但另外几位开发人员已经结束了一天的工作。"
+      },
+      {
+        "en": "I wanted to raise the issue without making it sound like a complaint.",
+        "zh": "我想提出这个问题，但又不希望听起来像是在抱怨。"
+      },
+      {
+        "en": "During our next team discussion, I said, \"I understand that finding a suitable time for everyone is difficult. However, could we consider rotating meeting times so the same people don't always have to stay late?\"",
+        "zh": "在下一次团队讨论中，我说：“我理解要找到一个适合所有人的时间并不容易。不过，我们能否考虑轮流调整会议时间，这样就不必总是让同一批人加班开会？”"
+      },
+      {
+        "en": "My manager appreciated the suggestion and asked us to propose a better arrangement.",
+        "zh": "经理认可了这个建议，并让我们提出更合理的安排。"
+      },
+      {
+        "en": "We decided to hold important discussions during overlapping working hours whenever possible. For less urgent topics, we would share written updates and let colleagues respond when they were available.",
+        "zh": "我们决定尽可能利用各地工作时间重叠的时段进行重要讨论。对于不太紧急的话题，则通过书面方式同步信息，让同事在方便的时候回复。"
+      },
+      {
+        "en": "We also agreed to record key decisions so nobody would miss important information.",
+        "zh": "我们还同意记录重要决策，确保没有人错过关键信息。"
+      },
+      {
+        "en": "Since making these changes, communication has become more efficient, and team members have had more flexibility.",
+        "zh": "做出这些调整后，沟通变得更加高效，团队成员的时间安排也更加灵活。"
+      },
+      {
+        "en": "I've learned that successful international collaboration isn't just about speaking English well. It's also about respecting different schedules and communicating thoughtfully.",
+        "zh": "我意识到，成功的国际团队协作不仅需要良好的英语表达能力，还需要尊重不同地区的工作时间，并以周到的方式沟通。"
+      }
+    ],
+    "words": [
+      {
+        "word": "coordinating",
+        "ipa": "/koʊˈɔːrdɪneɪtɪŋ/",
+        "meaning": "协调"
+      },
+      {
+        "word": "challenging",
+        "ipa": "/ˈtʃælɪndʒɪŋ/",
+        "meaning": "有挑战性的"
+      },
+      {
+        "word": "complaint",
+        "ipa": "/kəmˈpleɪnt/",
+        "meaning": "抱怨"
+      },
+      {
+        "word": "appreciated",
+        "ipa": "/əˈpriːʃieɪtɪd/",
+        "meaning": "认可；感谢"
+      },
+      {
+        "word": "arrangement",
+        "ipa": "/əˈreɪndʒmənt/",
+        "meaning": "安排"
+      },
+      {
+        "word": "overlapping",
+        "ipa": "/ˌoʊvərˈlæpɪŋ/",
+        "meaning": "重叠的"
+      },
+      {
+        "word": "collaboration",
+        "ipa": "/kəˌlæbəˈreɪʃən/",
+        "meaning": "协作"
+      },
+      {
+        "word": "thoughtfully",
+        "ipa": "/ˈθɔːtfəli/",
+        "meaning": "周到地"
+      }
+    ],
+    "topic": "职场沟通",
+    "level": "B1+",
+    "expressions": [
+      {
+        "text": "turn out to be",
+        "meaning": "结果发现是",
+        "example": "The change turned out to be more challenging than expected."
+      },
+      {
+        "text": "raise an issue",
+        "meaning": "提出问题",
+        "example": "I wanted to raise an issue about the schedule."
+      },
+      {
+        "text": "Could we consider...?",
+        "meaning": "能否考虑……？",
+        "example": "Could we consider rotating meeting times?"
+      },
+      {
+        "text": "overlapping working hours",
+        "meaning": "工作时间的重叠时段",
+        "example": "We should meet during overlapping working hours."
+      },
+      {
+        "text": "keep everyone in the loop",
+        "meaning": "让相关人员了解进展",
+        "example": "Let’s keep everyone in the loop."
+      }
+    ],
+    "exercises": [
+      {
+        "question": "Why was scheduling the meeting difficult?",
+        "questionZh": "为什么安排会议时间有难度？",
+        "reference": "It was difficult because the team worked across different time zones.",
+        "type": "COMPREHENSION"
+      },
+      {
+        "question": "What solution did the team choose?",
+        "questionZh": "团队采用了什么解决办法？",
+        "reference": "They decided to rotate meeting times and use written updates.",
+        "type": "COMPREHENSION"
+      },
+      {
+        "question": "How would you ask a manager to change a meeting time?",
+        "questionZh": "你会如何要求经理调整开会时间？",
+        "reference": "Could we consider rotating meeting times so nobody always has to stay late?",
+        "type": "OPEN_SPEAKING"
+      }
+    ]
+  },
+  {
+    "day": 23,
+    "title": "Dealing with a Flight Delay",
+    "date": "2026-11-19",
+    "segments": [
+      {
+        "en": "Last month, I was flying to Singapore to attend a technology conference. I had planned to arrive in the afternoon so I could check into my hotel and prepare for the next day's meetings.",
+        "zh": "上个月，我准备飞往新加坡参加一场技术会议。我原计划下午抵达，这样就能先办理酒店入住，并为第二天的会议做准备。"
+      },
+      {
+        "en": "However, shortly before boarding, the airline announced that our flight would be delayed due to a technical issue.",
+        "zh": "然而，就在登机前不久，航空公司宣布，由于技术故障，航班将延误。"
+      },
+      {
+        "en": "At first, I wasn't too worried. But after an hour, there was still no update, and I started to wonder whether I would arrive on time.",
+        "zh": "起初，我并没有太担心。但一个小时过去了，仍然没有新的通知，我开始担心自己能否按时到达。"
+      },
+      {
+        "en": "I approached the airline counter and asked, \"Excuse me, do you have an estimated departure time? I have an important meeting tomorrow morning.\"",
+        "zh": "我走到航空公司柜台，询问道：“不好意思，请问有预计起飞时间吗？我明天上午有一场重要会议。”"
+      },
+      {
+        "en": "The staff member explained that the engineers were inspecting the aircraft and that the delay might last another two hours.",
+        "zh": "工作人员解释说，工程师正在检查飞机，航班可能还要再延误两个小时。"
+      },
+      {
+        "en": "I asked whether there were any alternative flights available, but the next one was already fully booked.",
+        "zh": "我询问是否有其他可选择的航班，但下一班已经订满了。"
+      },
+      {
+        "en": "Instead of getting frustrated, I decided to adjust my plans. I contacted my hotel to inform them of my late arrival and sent a quick message to my colleagues.",
+        "zh": "我没有继续着急，而是决定调整计划。我联系酒店，告知自己会晚到，并给同事发了一条简短的消息。"
+      },
+      {
+        "en": "Fortunately, the flight eventually departed that evening.",
+        "zh": "幸运的是，航班最终在当天晚上起飞了。"
+      },
+      {
+        "en": "The experience taught me that unexpected changes are easier to manage when you stay calm, ask the right questions, and communicate early.",
+        "zh": "这次经历让我明白，遇到意外变化时，保持冷静、提出恰当的问题并及时沟通，会让事情更容易处理。"
+      }
+    ],
+    "words": [
+      {
+        "word": "conference",
+        "ipa": "/ˈkɑːnfərəns/",
+        "meaning": "会议"
+      },
+      {
+        "word": "boarding",
+        "ipa": "/ˈbɔːrdɪŋ/",
+        "meaning": "登机"
+      },
+      {
+        "word": "estimated",
+        "ipa": "/ˈestəmeɪtɪd/",
+        "meaning": "预计的"
+      },
+      {
+        "word": "departure",
+        "ipa": "/dɪˈpɑːrtʃər/",
+        "meaning": "出发；起飞"
+      },
+      {
+        "word": "inspecting",
+        "ipa": "/ɪnˈspektɪŋ/",
+        "meaning": "检查"
+      },
+      {
+        "word": "aircraft",
+        "ipa": "/ˈerkræft/",
+        "meaning": "飞机"
+      },
+      {
+        "word": "alternative",
+        "ipa": "/ɔːlˈtɝːnətɪv/",
+        "meaning": "替代方案"
+      },
+      {
+        "word": "frustrated",
+        "ipa": "/ˈfrʌstreɪtɪd/",
+        "meaning": "沮丧的"
+      },
+      {
+        "word": "eventually",
+        "ipa": "/ɪˈventʃuəli/",
+        "meaning": "最终"
+      }
+    ],
+    "topic": "旅行场景",
+    "level": "B1+",
+    "expressions": [
+      {
+        "text": "shortly before",
+        "meaning": "就在……之前",
+        "example": "Shortly before boarding, the airline announced a delay."
+      },
+      {
+        "text": "estimated departure time",
+        "meaning": "预计起飞时间",
+        "example": "Do you have an estimated departure time?"
+      },
+      {
+        "text": "I started to wonder whether...",
+        "meaning": "我开始琢磨是否……",
+        "example": "I started to wonder whether I would arrive on time."
+      },
+      {
+        "text": "alternative flights",
+        "meaning": "其他可选航班",
+        "example": "Are there any alternative flights available?"
+      },
+      {
+        "text": "keep you informed",
+        "meaning": "及时通报情况",
+        "example": "I’ll keep you informed if anything changes."
+      }
+    ],
+    "exercises": [
+      {
+        "question": "Why was the flight delayed?",
+        "questionZh": "航班为什么延误？",
+        "reference": "The flight was delayed because of a technical issue.",
+        "type": "COMPREHENSION"
+      },
+      {
+        "question": "How did the traveler adjust the plans?",
+        "questionZh": "旅行者如何调整计划？",
+        "reference": "He informed the hotel and colleagues about his late arrival.",
+        "type": "COMPREHENSION"
+      },
+      {
+        "question": "How would you explain a project delay to a manager?",
+        "questionZh": "你如何向经理解释项目延期？",
+        "reference": "We have encountered an unexpected issue, and I will keep you informed.",
+        "type": "OPEN_SPEAKING"
+      }
+    ]
+  },
+  {
+    "day": 24,
+    "title": "Investigating a Production Incident",
+    "date": "2026-11-20",
+    "segments": [
+      {
+        "en": "Yesterday morning, our team received an alert about unusually slow responses from one of our Java services. Some users were experiencing delays when submitting orders, although the service was still available.",
+        "zh": "昨天上午，我们团队收到一条告警：一个 Java 服务的响应时间异常增加。部分用户在提交订单时遇到了延迟，不过服务仍然可以访问。"
+      },
+      {
+        "en": "I joined a quick call with our engineers in London to investigate the issue.",
+        "zh": "我参加了与伦敦工程师的临时会议，一起调查这个问题。"
+      },
+      {
+        "en": "\"We've noticed a significant increase in response times over the past thirty minutes,\" I explained. \"We're looking into it, but we haven't identified the root cause yet.\"",
+        "zh": "我解释说：“过去三十分钟，我们发现响应时间明显增加。我们正在排查，但目前还没有确定根本原因。”"
+      },
+      {
+        "en": "One colleague suggested checking the database connections, while another reviewed the application logs.",
+        "zh": "一位同事建议检查数据库连接，另一位则查看应用日志。"
+      },
+      {
+        "en": "After examining our Prometheus dashboards, we discovered that the database connection pool was nearly exhausted. Several requests were holding connections longer than expected.",
+        "zh": "检查 Prometheus 监控面板后，我们发现数据库连接池几乎耗尽。多个请求占用数据库连接的时间超过了预期。"
+      },
+      {
+        "en": "We decided to restart one affected instance to reduce the immediate impact while investigating the underlying problem.",
+        "zh": "我们决定先重启一个受影响的实例，以缓解当前影响，同时继续调查深层原因。"
+      },
+      {
+        "en": "Our project manager asked when we expected to have a permanent fix.",
+        "zh": "项目经理询问我们预计什么时候能够彻底修复。"
+      },
+      {
+        "en": "\"It's difficult to give an exact timeline at this stage,\" I replied. \"I'll keep you informed as soon as we have a more accurate estimate.\"",
+        "zh": "我回答：“现阶段很难给出准确的时间。一旦有更可靠的预估，我会及时通知你。”"
+      },
+      {
+        "en": "Later that afternoon, we identified an inefficient query and prepared a fix for testing.",
+        "zh": "当天下午晚些时候，我们发现了一条效率较低的数据库查询，并准备了修复方案进行测试。"
+      },
+      {
+        "en": "The incident reminded me that clear communication is just as important as technical skills during an emergency.",
+        "zh": "这次故障让我意识到，在紧急情况下，清晰的沟通能力和技术能力同样重要。"
+      }
+    ],
+    "words": [
+      {
+        "word": "incident",
+        "ipa": "/ˈɪnsɪdənt/",
+        "meaning": "事故；故障"
+      },
+      {
+        "word": "unusually",
+        "ipa": "/ʌnˈjuːʒuəli/",
+        "meaning": "异常地"
+      },
+      {
+        "word": "significant",
+        "ipa": "/sɪɡˈnɪfɪkənt/",
+        "meaning": "显著的"
+      },
+      {
+        "word": "investigate",
+        "ipa": "/ɪnˈvestɪɡeɪt/",
+        "meaning": "调查"
+      },
+      {
+        "word": "exhausted",
+        "ipa": "/ɪɡˈzɔːstɪd/",
+        "meaning": "耗尽的"
+      },
+      {
+        "word": "underlying",
+        "ipa": "/ˌʌndərˈlaɪɪŋ/",
+        "meaning": "潜在的"
+      },
+      {
+        "word": "permanent",
+        "ipa": "/ˈpɝːmənənt/",
+        "meaning": "永久的"
+      },
+      {
+        "word": "accurate",
+        "ipa": "/ˈækjərət/",
+        "meaning": "准确的"
+      },
+      {
+        "word": "inefficient",
+        "ipa": "/ˌɪnɪˈfɪʃənt/",
+        "meaning": "低效的"
+      }
+    ],
+    "topic": "软件开发",
+    "level": "B1+",
+    "expressions": [
+      {
+        "text": "look into",
+        "meaning": "调查、排查",
+        "example": "We are looking into the performance issue."
+      },
+      {
+        "text": "root cause",
+        "meaning": "根本原因",
+        "example": "We have not identified the root cause yet."
+      },
+      {
+        "text": "reduce the immediate impact",
+        "meaning": "减轻眼前影响",
+        "example": "We restarted an instance to reduce the immediate impact."
+      },
+      {
+        "text": "at this stage",
+        "meaning": "现阶段",
+        "example": "It is difficult to give an exact timeline at this stage."
+      },
+      {
+        "text": "more accurate estimate",
+        "meaning": "更准确的预估",
+        "example": "I will provide a more accurate estimate soon."
+      }
+    ],
+    "exercises": [
+      {
+        "question": "What happened to the Java service?",
+        "questionZh": "Java 服务发生了什么？",
+        "reference": "The service became unusually slow.",
+        "type": "COMPREHENSION"
+      },
+      {
+        "question": "What was the suspected cause?",
+        "questionZh": "排查发现什么原因？",
+        "reference": "The database connection pool was nearly exhausted.",
+        "type": "COMPREHENSION"
+      },
+      {
+        "question": "How would you report an incident in English?",
+        "questionZh": "你会如何用英语汇报故障？",
+        "reference": "We are investigating the issue and will share a more accurate estimate soon.",
+        "type": "OPEN_SPEAKING"
+      }
+    ]
+  },
+  {
+    "day": 25,
+    "title": "Giving a Clear Daily Update",
+    "date": "2026-11-21",
+    "segments": [
+      {
+        "en": "Every morning, our development team has a short stand-up meeting to discuss our progress and any problems we're facing.",
+        "zh": "每天早上，我们开发团队都会开一个简短的站会，讨论工作进展和目前遇到的问题。"
+      },
+      {
+        "en": "Yesterday, it was my turn to give an update on a Java service I had been working on.",
+        "zh": "昨天轮到我汇报正在负责的一个 Java 服务。"
+      },
+      {
+        "en": "\"I'm currently investigating a performance issue in our order service,\" I began. \"Some API requests are taking longer than expected, especially during peak hours.\"",
+        "zh": "我开始说：“我目前正在排查订单服务的一个性能问题。有些 API 请求的响应时间比预期长，尤其是在高峰时段。”"
+      },
+      {
+        "en": "My manager asked whether I had found the cause.",
+        "zh": "经理问我是否找到了原因。"
+      },
+      {
+        "en": "\"Not yet, but I've narrowed it down to two possible areas: database queries and connection pool settings.\"",
+        "zh": "“还没有，不过我已经把排查范围缩小到了两个可能的方向：数据库查询和连接池配置。”"
+      },
+      {
+        "en": "I explained that I had already checked the application logs and reviewed the Prometheus metrics. So far, there was no evidence of a memory leak.",
+        "zh": "我解释说，自己已经检查过应用日志，并查看了 Prometheus 监控指标。目前还没有发现内存泄漏的证据。"
+      },
+      {
+        "en": "My next step was to run a load test and compare the results with our previous measurements.",
+        "zh": "下一步，我准备运行一次负载测试，并将结果与之前的数据进行比较。"
+      },
+      {
+        "en": "\"Do you need any help?\" a colleague asked.",
+        "zh": "一位同事问：“需要帮忙吗？”"
+      },
+      {
+        "en": "\"I think I'm good for now, but I might need someone to review the database queries later.\"",
+        "zh": "我回答：“目前应该还可以，不过之后可能需要有人帮我检查一下数据库查询。”"
+      },
+      {
+        "en": "Before finishing, I promised to share an update by the end of the day.",
+        "zh": "结束之前，我承诺会在当天结束前同步最新进展。"
+      },
+      {
+        "en": "The meeting only lasted fifteen minutes, but everyone understood what I was doing, what I had discovered, and what I planned to do next.",
+        "zh": "这次会议只持续了十五分钟，但每个人都清楚我正在做什么、已经发现了什么，以及下一步准备做什么。"
+      }
+    ],
+    "words": [
+      {
+        "word": "currently",
+        "ipa": "/ˈkɝːəntli/",
+        "meaning": "目前"
+      },
+      {
+        "word": "investigating",
+        "ipa": "/ɪnˈvestɪɡeɪtɪŋ/",
+        "meaning": "调查中"
+      },
+      {
+        "word": "performance",
+        "ipa": "/pərˈfɔːrməns/",
+        "meaning": "性能"
+      },
+      {
+        "word": "especially",
+        "ipa": "/ɪˈspeʃəli/",
+        "meaning": "尤其"
+      },
+      {
+        "word": "narrowed",
+        "ipa": "/ˈnæroʊd/",
+        "meaning": "缩小（范围）"
+      },
+      {
+        "word": "evidence",
+        "ipa": "/ˈevɪdəns/",
+        "meaning": "证据"
+      },
+      {
+        "word": "measurements",
+        "ipa": "/ˈmeʒərmənts/",
+        "meaning": "测量结果"
+      },
+      {
+        "word": "previous",
+        "ipa": "/ˈpriːviəs/",
+        "meaning": "之前的"
+      }
+    ],
+    "topic": "职场沟通",
+    "level": "B1+",
+    "expressions": [
+      {
+        "text": "currently working on",
+        "meaning": "目前正在做……",
+        "example": "I’m currently working on a performance issue."
+      },
+      {
+        "text": "longer than expected",
+        "meaning": "比预期更长",
+        "example": "The request is taking longer than expected."
+      },
+      {
+        "text": "narrow it down to",
+        "meaning": "缩小范围到……",
+        "example": "I have narrowed it down to two possible causes."
+      },
+      {
+        "text": "so far",
+        "meaning": "目前为止",
+        "example": "So far, there is no evidence of a memory leak."
+      },
+      {
+        "text": "my next step is to",
+        "meaning": "我的下一步是……",
+        "example": "My next step is to run a load test."
+      }
+    ],
+    "exercises": [
+      {
+        "question": "What was the engineer working on?",
+        "questionZh": "工程师正在排查什么？",
+        "reference": "He was investigating a performance issue.",
+        "type": "COMPREHENSION"
+      },
+      {
+        "question": "What was the next step?",
+        "questionZh": "下一步要做什么？",
+        "reference": "He planned to run a load test.",
+        "type": "COMPREHENSION"
+      },
+      {
+        "question": "Give a three-sentence stand-up update.",
+        "questionZh": "试着用三句话做每日站会汇报。",
+        "reference": "I am working on a bug. I have narrowed down the cause. My next step is to run more tests.",
+        "type": "OPEN_SPEAKING"
+      }
+    ]
+  },
+  {
+    "day": 26,
+    "title": "Making the Most of a Quiet Weekend",
+    "date": "2026-11-22",
+    "segments": [
+      {
+        "en": "After a busy week at work, I usually look forward to spending some quality time with my family. Last Saturday, we decided to visit a nearby park instead of staying at home.",
+        "zh": "忙碌了一周之后，我通常很期待和家人共度一段美好的时光。上周六，我们决定去附近的公园，而不是一直待在家里。"
+      },
+      {
+        "en": "The weather was pleasant, and my son was excited to explore everything around him. He stopped several times to look at birds, leaves, and other children playing nearby.",
+        "zh": "天气很舒服，儿子对周围的一切都充满好奇。他好几次停下来，看小鸟、树叶，还有附近玩耍的其他小朋友。"
+      },
+      {
+        "en": "At first, I kept thinking about an unfinished task at work. I was tempted to check my messages, but then I reminded myself that the issue could wait until Monday.",
+        "zh": "一开始，我还在想着工作中一项尚未完成的任务。我很想查看工作消息，但随后提醒自己，这个问题可以等到周一再处理。"
+      },
+      {
+        "en": "We spent the morning walking around the park and enjoying the fresh air. Later, we found a small café where we had lunch and talked about our plans for the coming week.",
+        "zh": "我们上午在公园里散步，呼吸新鲜空气。后来找到一家小咖啡馆，一边吃午饭，一边聊接下来一周的计划。"
+      },
+      {
+        "en": "In the afternoon, I managed to squeeze in twenty minutes of English practice while my son was taking a nap.",
+        "zh": "下午，趁儿子午睡的时候，我抽出了二十分钟练习英语。"
+      },
+      {
+        "en": "It wasn't an especially exciting day, but I felt relaxed and refreshed afterward.",
+        "zh": "这一天并没有什么特别令人兴奋的活动，但结束后我感到很放松，精神也恢复了不少。"
+      },
+      {
+        "en": "I've realized that a meaningful weekend doesn't have to involve an expensive trip or a complicated schedule. Sometimes, slowing down and enjoying simple moments is exactly what we need.",
+        "zh": "我逐渐意识到，有意义的周末不一定需要昂贵的旅行或复杂的安排。有时候，放慢脚步，享受生活中的简单时刻，恰恰就是我们需要的。"
+      }
+    ],
+    "words": [
+      {
+        "word": "quality",
+        "ipa": "/ˈkwɑːləti/",
+        "meaning": "优质的"
+      },
+      {
+        "word": "pleasant",
+        "ipa": "/ˈplezənt/",
+        "meaning": "宜人的"
+      },
+      {
+        "word": "explore",
+        "ipa": "/ɪkˈsplɔːr/",
+        "meaning": "探索"
+      },
+      {
+        "word": "tempted",
+        "ipa": "/ˈtemptɪd/",
+        "meaning": "忍不住想"
+      },
+      {
+        "word": "reminded",
+        "ipa": "/rɪˈmaɪndɪd/",
+        "meaning": "提醒"
+      },
+      {
+        "word": "squeeze",
+        "ipa": "/skwiːz/",
+        "meaning": "挤出"
+      },
+      {
+        "word": "refreshed",
+        "ipa": "/rɪˈfreʃt/",
+        "meaning": "恢复精神的"
+      },
+      {
+        "word": "meaningful",
+        "ipa": "/ˈmiːnɪŋfəl/",
+        "meaning": "有意义的"
+      },
+      {
+        "word": "complicated",
+        "ipa": "/ˈkɑːmplɪkeɪtɪd/",
+        "meaning": "复杂的"
+      }
+    ],
+    "topic": "日常生活",
+    "level": "B1+",
+    "expressions": [
+      {
+        "text": "look forward to",
+        "meaning": "期待做……",
+        "example": "I look forward to spending time with my family."
+      },
+      {
+        "text": "quality time",
+        "meaning": "高质量陪伴时间",
+        "example": "I spent some quality time with my family."
+      },
+      {
+        "text": "be tempted to",
+        "meaning": "忍不住想……",
+        "example": "I was tempted to check my messages."
+      },
+      {
+        "text": "squeeze in",
+        "meaning": "抽空做……",
+        "example": "I managed to squeeze in some English practice."
+      },
+      {
+        "text": "refreshed afterward",
+        "meaning": "之后精神焕发",
+        "example": "I felt refreshed afterward."
+      }
+    ],
+    "exercises": [
+      {
+        "question": "Where did the family go?",
+        "questionZh": "一家人去了哪里？",
+        "reference": "They went to a nearby park.",
+        "type": "COMPREHENSION"
+      },
+      {
+        "question": "How did the writer make time for English?",
+        "questionZh": "作者什么时候练习英语？",
+        "reference": "He practiced English while his son was taking a nap.",
+        "type": "COMPREHENSION"
+      },
+      {
+        "question": "Describe your weekend in four English sentences.",
+        "questionZh": "用四句英语描述你的周末。",
+        "reference": "I went to a park. I spent time with my family. I practiced English. I felt refreshed afterward.",
+        "type": "OPEN_SPEAKING"
+      }
+    ]
+  },
+  {
+    "day": 27,
+    "title": "Finding My Way to a Conference",
+    "date": "2026-11-23",
+    "segments": [
+      {
+        "en": "Last spring, I traveled to Berlin to attend an international software conference. On the first morning, I left my hotel early because I wanted to arrive before the opening presentation.",
+        "zh": "去年春天，我去柏林参加一场国际软件技术大会。第一天早上，我很早就离开了酒店，因为我希望在开幕演讲开始之前到达会场。"
+      },
+      {
+        "en": "I planned to take the subway, but I accidentally got on a train going in the wrong direction. When I realized my mistake, I got off at the next station.",
+        "zh": "我原计划乘地铁过去，但不小心坐上了反方向的列车。意识到自己坐错车后，我在下一站下了车。"
+      },
+      {
+        "en": "I wasn't sure how to get back on track, so I approached a station employee.",
+        "zh": "我不确定该怎么回到正确的路线，于是走向一位地铁工作人员。"
+      },
+      {
+        "en": "\"Excuse me, I'm trying to get to the City Conference Center. Could you tell me which line I should take?\"",
+        "zh": "“打扰一下，我想去城市会议中心。您能告诉我应该乘坐哪条线路吗？”"
+      },
+      {
+        "en": "She explained that I needed to take the U2 line in the opposite direction and change trains at another station.",
+        "zh": "她解释说，我需要乘坐反方向的 U2 线，然后在另一个车站换乘。"
+      },
+      {
+        "en": "\"Just to make sure I've understood correctly, I should take the U2 line and then transfer, right?\" I asked.",
+        "zh": "我问：“我确认一下自己有没有理解正确，我应该先坐 U2 线，然后换乘，对吗？”"
+      },
+      {
+        "en": "\"Exactly,\" she replied. \"It should take about twenty minutes.\"",
+        "zh": "“完全正确，”她回答，“大约需要二十分钟。”"
+      },
+      {
+        "en": "I thanked her and followed her directions. Fortunately, I arrived with enough time to grab a coffee before the presentation.",
+        "zh": "我向她道谢，并按照她的指示继续前往会场。幸运的是，我提前到达，还有时间在演讲开始前买杯咖啡。"
+      },
+      {
+        "en": "That experience reminded me that making mistakes while traveling isn't a big deal. What matters is staying calm, asking clear questions, and confirming that you've understood the answer.",
+        "zh": "这次经历让我意识到，旅行中犯点错误并不是什么大事。重要的是保持冷静、清楚地提问，并确认自己正确理解了对方的回答。"
+      }
+    ],
+    "words": [
+      {
+        "word": "international",
+        "ipa": "/ˌɪntərˈnæʃənəl/",
+        "meaning": "国际的"
+      },
+      {
+        "word": "presentation",
+        "ipa": "/ˌprezənˈteɪʃən/",
+        "meaning": "演讲"
+      },
+      {
+        "word": "accidentally",
+        "ipa": "/ˌæksɪˈdentəli/",
+        "meaning": "意外地"
+      },
+      {
+        "word": "direction",
+        "ipa": "/dəˈrekʃən/",
+        "meaning": "方向"
+      },
+      {
+        "word": "approached",
+        "ipa": "/əˈproʊtʃt/",
+        "meaning": "走近"
+      },
+      {
+        "word": "opposite",
+        "ipa": "/ˈɑːpəzɪt/",
+        "meaning": "相反的"
+      },
+      {
+        "word": "transfer",
+        "ipa": "/trænsˈfɝː/",
+        "meaning": "换乘（动词）"
+      },
+      {
+        "word": "confirming",
+        "ipa": "/kənˈfɝːmɪŋ/",
+        "meaning": "确认"
+      }
+    ],
+    "topic": "旅行场景",
+    "level": "B1+",
+    "expressions": [
+      {
+        "text": "get to",
+        "meaning": "到达……",
+        "example": "I am trying to get to the conference center."
+      },
+      {
+        "text": "get back on track",
+        "meaning": "回到正确路线",
+        "example": "I needed to get back on track."
+      },
+      {
+        "text": "in the opposite direction",
+        "meaning": "朝相反方向",
+        "example": "Take the train in the opposite direction."
+      },
+      {
+        "text": "just to make sure",
+        "meaning": "确认一下",
+        "example": "Just to make sure I understood correctly."
+      },
+      {
+        "text": "it should take about",
+        "meaning": "预计需要约……",
+        "example": "It should take about twenty minutes."
+      }
+    ],
+    "exercises": [
+      {
+        "question": "Why did the traveler get off the train?",
+        "questionZh": "旅行者为什么下车？",
+        "reference": "He took a train in the wrong direction.",
+        "type": "COMPREHENSION"
+      },
+      {
+        "question": "How did he confirm the instructions?",
+        "questionZh": "他如何确认方向？",
+        "reference": "He repeated the route to the employee.",
+        "type": "COMPREHENSION"
+      },
+      {
+        "question": "How would you confirm a technical requirement?",
+        "questionZh": "你会怎样确认一个技术需求？",
+        "reference": "Just to make sure I understood correctly, we should finish testing before deployment, right?",
+        "type": "OPEN_SPEAKING"
+      }
+    ]
+  },
+  {
+    "day": 28,
+    "title": "Speaking Up in a Technical Meeting",
+    "date": "2026-11-24",
+    "segments": [
+      {
+        "en": "Last Thursday, our development team held a meeting to discuss a new feature for our Java application. The project manager wanted to release it by Friday because an important customer was waiting for it.",
+        "zh": "上周四，我们开发团队开会讨论 Java 应用的一项新功能。项目经理希望在周五之前发布，因为一位重要客户正在等待这个功能。"
+      },
+      {
+        "en": "Most team members agreed with the plan, but I had some concerns about the testing schedule.",
+        "zh": "大多数团队成员都同意这个计划，但我对测试安排有些担忧。"
+      },
+      {
+        "en": "I didn't want to sound negative, so I waited until everyone had finished speaking.",
+        "zh": "我不想显得过于消极，所以等大家都发言结束后才开口。"
+      },
+      {
+        "en": "\"I understand why we want to release this feature quickly,\" I said. \"However, I'm a little concerned that we haven't tested it under heavy traffic.\"",
+        "zh": "我说：“我理解为什么我们希望尽快发布这个功能。不过，我有点担心我们还没有在高流量情况下对它进行测试。”"
+      },
+      {
+        "en": "The manager asked whether I thought we should delay the release.",
+        "zh": "经理问我是否认为应该推迟发布。"
+      },
+      {
+        "en": "\"Not necessarily,\" I replied. \"I think we could run a focused load test first. If the results look good, we can move forward as planned.\"",
+        "zh": "我回答：“不一定。我认为我们可以先进行一次有针对性的负载测试。如果结果良好，就可以按原计划继续推进。”"
+      },
+      {
+        "en": "Another developer supported my suggestion and offered to help prepare the test environment.",
+        "zh": "另一位开发人员支持我的建议，并主动提出帮忙准备测试环境。"
+      },
+      {
+        "en": "We agreed to spend two hours testing the most important scenarios before making the final decision.",
+        "zh": "我们同意先花两个小时测试最重要的场景，然后再做最终决定。"
+      },
+      {
+        "en": "In the end, the team appreciated having another option rather than simply choosing between releasing and delaying.",
+        "zh": "最终，团队很认可这个额外的选择，而不是只能在立即发布和推迟发布之间二选一。"
+      },
+      {
+        "en": "I learned that expressing disagreement doesn't have to create conflict. When you explain your concerns clearly and offer a practical solution, you can help the team make better decisions.",
+        "zh": "我认识到，表达不同意见不一定会引发冲突。当你清楚地解释自己的顾虑，并提出切实可行的解决方案时，就能够帮助团队做出更好的决策。"
+      }
+    ],
+    "words": [
+      {
+        "word": "concerns",
+        "ipa": "/kənˈsɝːnz/",
+        "meaning": "顾虑"
+      },
+      {
+        "word": "negative",
+        "ipa": "/ˈneɡətɪv/",
+        "meaning": "消极的"
+      },
+      {
+        "word": "necessarily",
+        "ipa": "/ˌnesəˈserəli/",
+        "meaning": "必然地"
+      },
+      {
+        "word": "focused",
+        "ipa": "/ˈfoʊkəst/",
+        "meaning": "有针对性的"
+      },
+      {
+        "word": "environment",
+        "ipa": "/ɪnˈvaɪrənmənt/",
+        "meaning": "环境"
+      },
+      {
+        "word": "scenarios",
+        "ipa": "/səˈnerioʊz/",
+        "meaning": "场景"
+      },
+      {
+        "word": "disagreement",
+        "ipa": "/ˌdɪsəˈɡriːmənt/",
+        "meaning": "意见分歧"
+      },
+      {
+        "word": "practical",
+        "ipa": "/ˈpræktɪkəl/",
+        "meaning": "切实可行的"
+      }
+    ],
+    "topic": "职场沟通",
+    "level": "B1+",
+    "expressions": [
+      {
+        "text": "have some concerns about",
+        "meaning": "对……有顾虑",
+        "example": "I have some concerns about the testing schedule."
+      },
+      {
+        "text": "not necessarily",
+        "meaning": "不一定",
+        "example": "Not necessarily; we could test it first."
+      },
+      {
+        "text": "focused load test",
+        "meaning": "有针对性的负载测试",
+        "example": "Let’s run a focused load test."
+      },
+      {
+        "text": "move forward as planned",
+        "meaning": "按计划推进",
+        "example": "We can move forward as planned."
+      },
+      {
+        "text": "rather than",
+        "meaning": "而不是……",
+        "example": "Offer an option rather than delaying immediately."
+      }
+    ],
+    "exercises": [
+      {
+        "question": "What concerned the engineer?",
+        "questionZh": "工程师有什么顾虑？",
+        "reference": "The team had not tested the feature under heavy traffic.",
+        "type": "COMPREHENSION"
+      },
+      {
+        "question": "What alternative did he suggest?",
+        "questionZh": "他提出什么替代方案？",
+        "reference": "He suggested running a focused load test.",
+        "type": "COMPREHENSION"
+      },
+      {
+        "question": "How would you disagree politely in a meeting?",
+        "questionZh": "你如何在会议上礼貌表达不同意见？",
+        "reference": "I understand the deadline, but I am concerned about skipping tests. Could we test first?",
+        "type": "OPEN_SPEAKING"
+      }
+    ]
+  },
+  {
+    "day": 29,
+    "title": "Choosing the Right Technical Solution",
+    "date": "2026-11-25",
+    "segments": [
+      {
+        "en": "During a recent design meeting, our team discussed whether to introduce Redis caching into our Java application. The database was handling an increasing number of requests, and we wanted to improve the overall performance.",
+        "zh": "在最近的一次设计会议上，我们团队讨论了是否应该在 Java 应用中引入 Redis 缓存。数据库正在处理越来越多的请求，我们希望提高系统的整体性能。"
+      },
+      {
+        "en": "One developer suggested caching as much data as possible. While this approach could reduce database load, I pointed out that it might also introduce consistency issues.",
+        "zh": "一位开发人员建议尽可能多地缓存数据。虽然这种方式能够降低数据库负载，但我指出，它也可能引入数据一致性问题。"
+      },
+      {
+        "en": "\"In my opinion, we need to strike a balance between performance and data consistency,\" I explained.",
+        "zh": "我解释说：“在我看来，我们需要在性能和数据一致性之间取得平衡。”"
+      },
+      {
+        "en": "Rather than caching everything, I suggested starting with frequently accessed data that didn't change very often.",
+        "zh": "与其缓存所有数据，我建议先从那些访问频繁、但不经常变化的数据入手。"
+      },
+      {
+        "en": "My colleague asked how we would handle outdated data in the cache.",
+        "zh": "同事问我们应该如何处理缓存中的过期数据。"
+      },
+      {
+        "en": "I explained that we could set an appropriate expiration time and invalidate cached data when important updates occurred.",
+        "zh": "我解释说，我们可以设置合适的过期时间，并在发生重要数据更新时使对应的缓存失效。"
+      },
+      {
+        "en": "Of course, this approach would add some complexity to our application, but the benefits could outweigh the drawbacks.",
+        "zh": "当然，这种方式会增加应用程序的复杂性，但它带来的收益可能超过其缺点。"
+      },
+      {
+        "en": "We eventually agreed to build a small prototype and measure its performance before making a final decision.",
+        "zh": "最终，我们同意先构建一个小型原型，测量其性能，然后再做最终决定。"
+      },
+      {
+        "en": "From this experience, I've learned that choosing a technical solution isn't simply about finding the fastest option. It's about understanding the trade-offs and selecting an approach that meets the actual business requirements.",
+        "zh": "通过这次经历，我认识到，选择技术方案并不只是寻找速度最快的方案，而是理解其中的利弊与取舍，并选择真正符合业务需求的方案。"
+      }
+    ],
+    "words": [
+      {
+        "word": "introduce",
+        "ipa": "/ˌɪntrəˈduːs/",
+        "meaning": "引入"
+      },
+      {
+        "word": "consistency",
+        "ipa": "/kənˈsɪstənsi/",
+        "meaning": "一致性"
+      },
+      {
+        "word": "frequently",
+        "ipa": "/ˈfriːkwəntli/",
+        "meaning": "频繁地"
+      },
+      {
+        "word": "appropriate",
+        "ipa": "/əˈproʊpriət/",
+        "meaning": "合适的"
+      },
+      {
+        "word": "expiration",
+        "ipa": "/ˌekspəˈreɪʃən/",
+        "meaning": "过期"
+      },
+      {
+        "word": "invalidate",
+        "ipa": "/ɪnˈvælɪdeɪt/",
+        "meaning": "使失效"
+      },
+      {
+        "word": "complexity",
+        "ipa": "/kəmˈpleksəti/",
+        "meaning": "复杂性"
+      },
+      {
+        "word": "outweigh",
+        "ipa": "/ˌaʊtˈweɪ/",
+        "meaning": "超过；胜过"
+      },
+      {
+        "word": "prototype",
+        "ipa": "/ˈproʊtətaɪp/",
+        "meaning": "原型"
+      },
+      {
+        "word": "trade-offs",
+        "ipa": "/ˈtreɪd ˌɔːfs/",
+        "meaning": "取舍"
+      }
+    ],
+    "topic": "软件开发",
+    "level": "B2",
+    "expressions": [
+      {
+        "text": "strike a balance between",
+        "meaning": "在……之间取得平衡",
+        "example": "We need to strike a balance between performance and consistency."
+      },
+      {
+        "text": "rather than",
+        "meaning": "与其……不如……",
+        "example": "Rather than caching everything, start with common data."
+      },
+      {
+        "text": "outweigh the drawbacks",
+        "meaning": "利大于弊",
+        "example": "The benefits may outweigh the drawbacks."
+      },
+      {
+        "text": "understand the trade-offs",
+        "meaning": "了解取舍",
+        "example": "We need to understand the trade-offs."
+      },
+      {
+        "text": "meet business requirements",
+        "meaning": "满足业务需求",
+        "example": "The design should meet business requirements."
+      }
+    ],
+    "exercises": [
+      {
+        "question": "Why did the team consider Redis?",
+        "questionZh": "团队为什么考虑Redis？",
+        "reference": "They wanted to improve performance and reduce database load.",
+        "type": "COMPREHENSION"
+      },
+      {
+        "question": "What trade-offs did they discuss?",
+        "questionZh": "团队讨论了哪些取舍？",
+        "reference": "They discussed performance, data consistency and complexity.",
+        "type": "COMPREHENSION"
+      },
+      {
+        "question": "Explain a trade-off in a technology you know.",
+        "questionZh": "描述你熟悉的一项技术取舍。",
+        "reference": "Redis improves performance, but it adds consistency issues. We need to balance speed and complexity.",
+        "type": "OPEN_SPEAKING"
+      }
+    ]
+  }
+]</script><script>(() => {
+  const lessons = JSON.parse(document.getElementById('seed').textContent).slice().reverse().map((l,i)=>({...l,id:i+1}));
+  const $ = document.getElementById('root');
+  const state={page:'dashboard',id:lessons[0].id,tab:'read',translation:true,rate:.9,word:-1,question:0,reveal:false,answer:'',feedback:false,search:'',menu:false,reviewReveal:false};
+  const steps=[['read','阅读理解','双语对照'],['vocab','词汇表达','发音与句型'],['shadow','听力跟读','逐段练习'],['replace','句型替换','主动组织'],['speak','自由表达','情景问答']];
+  const menu=[['dashboard','今日学习','⌂'],['lessons','课程归档','▤'],['reviews','表达复习','▣'],['stats','学习统计','▥'],['settings','设置','⚙']];
+  const escape=(s)=>String(s??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;');
+  const lesson=()=>lessons.find(l=>l.id===state.id);
+  const done=(id=state.id)=>JSON.parse(localStorage.getItem('sf-demo-steps-'+id)||'{}');
+  const favoriteIds=()=>JSON.parse(localStorage.getItem('sf-demo-favorites')||'[]');
+  const button=(label,act,kind='outline')=>`<button class="btn ${kind}" data-action="${act}">${label}</button>`;
+  const headings=(top,title,sub)=>`<div class="page-head"><span class="eyebrow">${escape(top)}</span><h1>${escape(title)}<span class="accent-dot">.</span></h1><p>${escape(sub)}</p></div>`;
+  const card=(l)=>`<button class="lesson-tile" data-action="choose" data-id="${l.id}"><div class="tile-top"><span class="tile-day">DAY ${l.day}</span><span class="tile-level">${escape(l.level)}</span></div><h3>${escape(l.title)}</h3><p>${escape(l.topic)} · ${l.date}</p><div class="tile-bottom">进入课程 <span>➜</span></div></button>`;
+  const stat=(label,value,unit,ico)=>`<div class="stat-card"><div class="stat-icon">${ico}</div><span>${escape(label)}</span><div><b>${escape(value)}</b><small>${escape(unit)}</small></div></div>`;
+  function frame(content){return `<div class="shell"><div class="sidebar ${state.menu?'mobile-open':''}"><div class="brand"><span class="brand-mark">≋</span><span>SpeakFlow</span></div><div class="sidebar-group-title">WORKSPACE</div><nav class="nav">${menu.map(([key,label,ico])=>`<button class="nav-link ${state.page===key?'active':''}" data-action="nav" data-page="${key}"><span style="font-size:20px;width:18px;display:inline-block;text-align:center">${ico}</span>${label}</button>`).join('')}</nav><div class="sidebar-fill"></div><div class="sidebar-card"><span class="pill">YOUR JOURNEY</span><div class="sidebar-card-title">Small steps,<br/>stronger English.</div><div class="sidebar-card-meta">每天进步一点点</div></div><div class="side-account"><span class="avatar">D</span><span class="account-name">Demo learner<small>本地离线体验</small></span></div></div>${state.menu?'<div class="mobile-shade" data-action="close-menu"></div>':''}<div class="main-wrap"><header class="topbar"><button class="hamburger" data-action="menu">☰</button><div class="breadcrumb">学习空间 <span>›</span> <b>${escape(menu.find(x=>x[0]===state.page)?.[1]||'课程学习')}</b></div><div class="top-right"><span class="mode-tag">离线预览 · 不连接 MySQL</span><span class="date-label">ENGLISH EVERY DAY</span><span class="avatar small">D</span></div></header><main class="page">${content}</main></div></div>`}
+  function home(){const l=lesson(),c=Object.values(done()).filter(Boolean).length;return `${headings('DAILY LEARNING SPACE','继续，让英语成为你的表达习惯','每天一篇文章，重点不止是读懂，而是能独立说出来。')}<div class="hero"><div class="hero-main"><div class="hero-kicker"><span class="light-dot"></span> 最新可用课程 · Day ${l.day}</div><h2>${escape(l.title)}</h2><p>${escape(l.topic)} · ${escape(l.level)} · 约15分钟</p>${button('开始今天的练习 →','open','white')}</div><div class="hero-symbol">≋</div></div><div class="stat-grid">${stat('可学习文章',lessons.length,'篇','▤')}${stat('当前课程进度',c,'/ 5','◉')}${stat('练习重点','开口','表达','♪')}</div><div class="section-heading"><div><h2>最近的课程</h2><p>英文原文、中文对照和美式音标</p></div><button class="link-button" data-action="nav" data-page="lessons">查看全部 →</button></div><div class="lesson-grid">${lessons.slice(0,4).map(card).join('')}</div><div class="info-banner">✦ <div><b>今天的练习目标</b><p>读完文章后，不看原文，用3–5句话描述一个真实场景。</p></div></div>`}
+  function archive(){return `${headings('YOUR LESSON LIBRARY','课程归档','8篇完整的历史练习文章。')}<div class="search-wrap"><span>⌕</span><input id="search-input" placeholder="搜索文章标题或主题" value="${escape(state.search)}"/></div><div class="archive-list">${lessons.filter(l=>(l.title+l.topic).toLowerCase().includes(state.search.toLowerCase())).map(l=>`<button class="archive-row" data-action="choose" data-id="${l.id}"><div class="day-square">${l.day}</div><div class="archive-detail"><b>${escape(l.title)}</b><small>${l.date} · ${escape(l.topic)} · ${escape(l.level)}</small></div><span>›</span></button>`).join('')}</div>`}
+  function lessonPage(){const l=lesson(), d=done(),n=Object.values(d).filter(Boolean).length;return `<button class="back-link" data-action="nav" data-page="lessons">← 课程归档</button><div class="lesson-header"><div><span class="eyebrow">DAY ${l.day} · ${escape(l.topic).toUpperCase()} · ${escape(l.level)}</span><h1>${escape(l.title)}</h1><p>每天15分钟 · 阅读、跟读、主动表达</p></div><div class="lesson-date">${l.date}</div></div><div class="progress-bar"><span style="width:${n*20}%"></span></div><div class="progress-caption">学习进度 ${n}/5</div><div class="study-tabs">${steps.map(([key,name,sub],i)=>`<button class="study-tab ${state.tab===key?'selected':''}" data-action="tab" data-tab="${key}"><span class="step-num">${d[key]?'✓':('0'+(i+1))}</span><span class="step-title">${name}<small>${sub}</small></span></button>`).join('')}</div><div class="content-layout"><section class="work-panel">${panel(l,d)}</section><aside class="right-panel"><div class="right-card"><div class="right-card-head"><span>LEARNING PATH</span><span>${n}/5</span></div><h3>今天的学习步骤</h3><div class="right-progress">${steps.map(([key,name])=>`<button class="${state.tab===key?'now':''}" data-action="tab" data-tab="${key}"><span>${d[key]?'●':'○'}</span><span>${name}</span></button>`).join('')}</div></div><div class="quote-card"><div class="quote-icon">✦</div><p>Don't just understand it.<br/><b>Learn to say it.</b></p><small>每天至少独立说出3句话</small></div><div class="right-card compact"><b>朗读语速</b><div class="rate-pills compact-pills">${[.75,.9,1,1.2].map(r=>`<button data-action="rate" data-rate="${r}" class="${state.rate===r?'active':''}">${r}×</button>`).join('')}</div><p class="tiny">语音使用浏览器自带的英文朗读。</p></div></aside></div>`}
+  function panelHead(no,title,desc){return `<div class="panel-heading"><div><span class="eyebrow">${no}</span><h2>${title}</h2>${desc?`<p class="panel-desc">${desc}</p>`:''}</div></div>`}
+  function footer(step,next){const [key,name]=steps.find(x=>x[0]===step);return `<div class="section-footer">${button((done()[step]?'已完成 ✓':'标记'+name+'完成'),'complete')}${next?button('下一步 →','next','primary'):''}</div>`}
+  function panel(l){if(state.tab==='read')return `<div class="panel-heading"><div><span class="eyebrow">01 / READING</span><h2>文章阅读</h2></div><div class="panel-tools"><button class="tool-btn" data-action="translation">${state.translation?'隐藏译文':'显示译文'}</button><button class="tool-btn" data-action="read-all">▶ 全文朗读</button></div></div><div class="reading-body">${l.segments.map((s,i)=>`<div class="segment"><button class="segment-audio" data-action="speak-segment" data-index="${i}" title="朗读本段">♫</button><div><p class="en-text">${escape(s.en)}</p>${state.translation?`<p class="zh-text">${escape(s.zh)}</p>`:''}</div><span class="segment-no">${('0'+(i+1)).slice(-2)}</span></div>`).join('')}</div>${footer('read',true)}`;
+  if(state.tab==='vocab')return `${panelHead('02 / VOCABULARY','词汇与表达','点击单词查看音标和释义，收藏后加入复习。')}<div class="word-grid">${l.words.map((w,i)=>`<button class="word-card ${state.word===i?'chosen':''}" data-action="word" data-index="${i}"><div><b>${escape(w.word)}</b><small>${escape(w.ipa)}</small></div><span>${escape(w.meaning)}</span></button>`).join('')}</div>${state.word>=0?`<div class="word-detail"><div><span class="eyebrow">WORD DETAILS</span><h3>${escape(l.words[state.word]?.word)} <span>${escape(l.words[state.word]?.ipa)}</span></h3><p>${escape(l.words[state.word]?.meaning)}</p></div><div class="detail-actions"><button class="icon-button" data-action="speak-word">▶</button><button class="icon-button" data-action="save-word">☆</button></div></div>`:''}<h3 class="subheading">5个核心表达</h3><div class="expressions">${l.expressions.map((e,i)=>`<div class="expression"><span class="expression-index">${('0'+(i+1)).slice(-2)}</span><div><b>${escape(e.text)}</b><p class="exp-zh">${escape(e.meaning)}</p><p class="exp-example">${escape(e.example)}</p></div><button class="icon-button" data-action="speak-expression" data-index="${i}">▶</button></div>`).join('')}</div>${footer('vocab',true)}`;
+  if(state.tab==='shadow')return `${panelHead('03 / SHADOWING','听力跟读','先播放英文，再自己跟读。')}<div class="rate-control"><span>♫</span><b>朗读语速</b><div class="rate-pills">${[.75,.9,1,1.2].map(r=>`<button data-action="rate" data-rate="${r}" class="${state.rate===r?'active':''}">${r}×</button>`).join('')}</div></div><div class="shadow-list">${l.segments.map((s,i)=>`<div class="shadow-line"><span>${('0'+(i+1)).slice(-2)}</span><p>${escape(s.en)}</p><button class="icon-button" data-action="speak-segment" data-index="${i}">▶</button></div>`).join('')}</div>${footer('shadow',true)}`;
+  if(state.tab==='replace'){const i=state.question%l.expressions.length;const e=l.expressions[i];return `${panelHead('04 / ACTIVE RECALL','句型替换','先根据中文含义自己说出英语，再查看示例。')}<div class="substitution-card"><span class="eyebrow">EXPRESSION PRACTICE</span><span class="pill">${i+1} / ${l.expressions.length}</span><h2>${escape(e.meaning)}</h2><p>尽量不用完整中文翻译，直接调用熟悉的英语表达。</p>${state.reveal?`<div class="answer-preview"><b>${escape(e.text)}</b><span>${escape(e.example)}</span></div>`:''}<div class="action-row">${button(state.reveal?'隐藏答案':'查看英文示例','reveal')}${button('换一个表达 ↻','next-expression','primary')}</div></div>${footer('replace',true)}`}
+  const e=l.exercises[state.question%l.exercises.length];return `${panelHead('05 / SPEAKING','自由表达','不看原文，先自己说完，再查看参考表达。')}<div class="question-tabs">${l.exercises.map((_,i)=>`<button class="${state.question===i?'chosen':''}" data-action="question" data-index="${i}">Question ${i+1}</button>`).join('')}</div><div class="question-card"><span class="eyebrow">SPEAKING CHALLENGE</span><h2>${escape(e.question)}</h2><p>${escape(e.questionZh)}</p></div><div class="answer-box"><div class="answer-label"><span>🎙</span><b>你的回答</b><span>建议30–60秒</span></div><textarea id="answer-input" placeholder="先自己用英语说出来，可以再输入或使用语音识别…">${escape(state.answer)}</textarea><div class="mic-controls">${button('🎙 语音输入','mic')}<span id="voice-note">浏览器语音识别依赖 Chrome 等浏览器，也可以手动输入。</span></div></div>${button('提交练习','submit','primary')}${state.feedback?`<div class="feedback"><span class="eyebrow">PRACTICE FEEDBACK</span><h3>已保存到本地体验记录</h3><p>离线预览仅展示参考表达，不会调用AI或连接数据库。</p><div class="answer-preview"><small>参考表达</small><b>${escape(e.reference)}</b></div><p>请不看英文再说一次。</p>${button('再说一次 ↻','retry')}</div>`:''}${footer('speak',false)}`;
+  }
+  function reviews(){const idset=favoriteIds();const words=lessons.flatMap(l=>l.words.map((w,i)=>({...w,id:l.id*1000+i}))).filter(w=>idset.includes(w.id));return `${headings('SPACED REPETITION','表达复习','重点练习看中文主动说英文。')}${words.length?`<div class="review-list">${words.map(w=>`<div class="review-row"><div><h3>${escape(w.word)}</h3><p>${escape(w.ipa)} · ${escape(w.meaning)}</p></div><div class="action-row"><button class="btn outline" data-action="review-speak" data-word="${escape(w.word)}">▶ 发音</button><button class="btn primary" data-action="remove-review" data-id="${w.id}">我记住了</button></div></div>`).join('')}</div>`:`<div class="empty"><h2>目前还没有收藏的表达</h2><p>进入词汇页，点击 ☆ 收藏单词。</p>${button('开始学习 →','open','primary')}</div>`}`}
+  function stats(){const progress=lessons.filter(l=>Object.values(done(l.id)).filter(Boolean).length===5).length;return `${headings('LEARNING INSIGHTS','学习统计','记录真实的学习行为。')}<div class="stat-grid">${stat('已收录课程',lessons.length,'篇','▤')}${stat('完整完成',progress,'篇','✓')}${stat('收藏词汇',favoriteIds().length,'个','☆')}</div><div class="info-banner">✦ <div><b>持续记录学习进步</b><p>体验版的学习进度记录在浏览器本地存储中。</p></div></div>`}
+  function settings(){return `${headings('YOUR PREFERENCES','学习设置','调整属于自己的英语学习空间。')}<div class="settings-card"><h3>朗读速度</h3><div class="rate-pills">${[.75,.9,1,1.2].map(r=>`<button data-action="rate" data-rate="${r}" class="${state.rate===r?'active':''}">${r}×</button>`).join('')}</div><h3>中文对照</h3>${button(state.translation?'当前：显示翻译':'当前：隐藏翻译','translation')}<p class="tiny">这是无服务器离线预览，不会访问你提供的数据库。完整项目在根目录配有 Docker Compose。</p></div>`}
+  function render(){let content=state.page==='dashboard'?home():state.page==='lessons'?archive():state.page==='learn'?lessonPage():state.page==='reviews'?reviews():state.page==='stats'?stats():settings();$.innerHTML=frame(content)}
+  function speakText(text){if(!('speechSynthesis' in window)){alert('当前浏览器不支持语音朗读');return}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='en-US';u.rate=state.rate;const v=speechSynthesis.getVoices().find(v=>v.lang==='en-US');if(v)u.voice=v;speechSynthesis.speak(u)}
+  $.addEventListener('input',e=>{if(e.target.id==='answer-input')state.answer=e.target.value;if(e.target.id==='search-input'){const start=e.target.selectionStart;state.search=e.target.value;render();const el=document.getElementById('search-input');el.focus();el.setSelectionRange(start,start)}});
+  $.addEventListener('click',e=>{const t=e.target.closest('button[data-action], .mobile-shade[data-action]');if(!t)return;
+    const action=t.dataset.action;const l=lesson();
+    switch(action){
+      case 'nav':state.page=t.dataset.page;state.menu=false;state.search='';break;
+      case 'menu':state.menu=true;break;case 'close-menu':state.menu=false;break;
+      case 'open':state.page='learn';state.tab='read';break;
+      case 'choose':state.id=Number(t.dataset.id);state.page='learn';state.tab='read';state.word=-1;state.question=0;state.menu=false;break;
+      case 'tab':state.tab=t.dataset.tab;state.question=0;state.reveal=false;break;
+      case 'complete':{const d=done();d[state.tab]=!d[state.tab];localStorage.setItem('sf-demo-steps-'+l.id,JSON.stringify(d));break}
+      case 'next':state.tab=steps[Math.min(steps.findIndex(s=>s[0]===state.tab)+1,steps.length-1)][0];state.question=0;break;
+      case 'translation':state.translation=!state.translation;break;
+      case 'read-all':speakText(l.segments.map(s=>s.en).join(' '));break;
+      case 'speak-segment':speakText(l.segments[Number(t.dataset.index)].en);break;
+      case 'speak-expression':speakText(l.expressions[Number(t.dataset.index)].example);break;
+      case 'word':state.word=Number(t.dataset.index);break;
+      case 'speak-word':speakText(l.words[state.word].word);break;
+      case 'save-word':{const id=l.id*1000+state.word;const ids=favoriteIds();if(!ids.includes(id))ids.push(id);localStorage.setItem('sf-demo-favorites',JSON.stringify(ids));break}
+      case 'rate':state.rate=Number(t.dataset.rate);break;
+      case 'reveal':state.reveal=!state.reveal;break;
+      case 'next-expression':state.question=(state.question+1)%l.expressions.length;state.reveal=false;break;
+      case 'question':state.question=Number(t.dataset.index);state.feedback=false;state.answer='';break;
+      case 'submit':if(!state.answer.trim()){alert('请先用英语作答');return}localStorage.setItem('sf-demo-last-answer',state.answer);state.feedback=true;break;
+      case 'retry':state.feedback=false;state.answer='';break;
+      case 'review-speak':speakText(t.dataset.word);break;
+      case 'remove-review':localStorage.setItem('sf-demo-favorites',JSON.stringify(favoriteIds().filter(id=>id!==Number(t.dataset.id))));break;
+      case 'mic':{
+        const Klass=window.SpeechRecognition||window.webkitSpeechRecognition;
+        if(!Klass){alert('当前浏览器不支持语音转写，可直接在文本框输入英文');return}
+        const sr=new Klass();sr.lang='en-US';sr.onresult=event=>{state.answer=event.results[0][0].transcript;render()};sr.onerror=event=>alert('语音识别失败：'+event.error);sr.start();return;
+      }
+    }
+    render();
+  });
+  render();
+})();
+</script></body></html>

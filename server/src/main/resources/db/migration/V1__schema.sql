@@ -1,0 +1,131 @@
+CREATE TABLE sf_user (
+ id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ username VARCHAR(64) NOT NULL,
+ password_hash VARCHAR(255) NOT NULL,
+ display_name VARCHAR(100) NOT NULL,
+ timezone VARCHAR(64) NOT NULL DEFAULT 'Asia/Shanghai',
+ status VARCHAR(20) NOT NULL DEFAULT 'ACTIVE',
+ created_at DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+ updated_at DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
+ UNIQUE KEY uk_user_username (username)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE sf_plan (
+ id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ owner_user_id BIGINT UNSIGNED NOT NULL,
+ title VARCHAR(200) NOT NULL,
+ timezone VARCHAR(64) NOT NULL DEFAULT 'Asia/Shanghai',
+ status VARCHAR(20) NOT NULL DEFAULT 'ACTIVE',
+ created_at DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+ updated_at DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
+ CONSTRAINT fk_plan_owner FOREIGN KEY (owner_user_id) REFERENCES sf_user(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE sf_plan_member (
+ id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ plan_id BIGINT UNSIGNED NOT NULL,
+ user_id BIGINT UNSIGNED NOT NULL,
+ role VARCHAR(20) NOT NULL DEFAULT 'OWNER',
+ joined_at DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+ UNIQUE KEY uk_plan_member (plan_id, user_id),
+ CONSTRAINT fk_member_plan FOREIGN KEY (plan_id) REFERENCES sf_plan(id),
+ CONSTRAINT fk_member_user FOREIGN KEY (user_id) REFERENCES sf_user(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE sf_lesson (
+ id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ plan_id BIGINT UNSIGNED NOT NULL,
+ lesson_date DATE NOT NULL,
+ day_no INT NOT NULL,
+ title_en VARCHAR(255) NOT NULL,
+ topic VARCHAR(80) NOT NULL,
+ level VARCHAR(12) NOT NULL,
+ status VARCHAR(20) NOT NULL DEFAULT 'PUBLISHED',
+ created_at DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+ updated_at DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
+ UNIQUE KEY uk_lesson_plan_date (plan_id, lesson_date),
+ KEY idx_lesson_date (lesson_date),
+ CONSTRAINT fk_lesson_plan FOREIGN KEY (plan_id) REFERENCES sf_plan(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE sf_lesson_segment (
+ id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ lesson_id BIGINT UNSIGNED NOT NULL,
+ segment_no INT NOT NULL,
+ text_en TEXT NOT NULL,
+ text_zh TEXT NOT NULL,
+ UNIQUE KEY uk_segment_order (lesson_id,segment_no),
+ CONSTRAINT fk_segment_lesson FOREIGN KEY (lesson_id) REFERENCES sf_lesson(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE sf_lesson_word (
+ id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ lesson_id BIGINT UNSIGNED NOT NULL,
+ sort_order INT NOT NULL,
+ word VARCHAR(120) NOT NULL,
+ ipa VARCHAR(255),
+ meaning_zh VARCHAR(255) NOT NULL,
+ UNIQUE KEY uk_word_sort (lesson_id,sort_order),
+ CONSTRAINT fk_word_lesson FOREIGN KEY (lesson_id) REFERENCES sf_lesson(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE sf_lesson_expression (
+ id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ lesson_id BIGINT UNSIGNED NOT NULL,
+ sort_order INT NOT NULL,
+ expression_en VARCHAR(500) NOT NULL,
+ meaning_zh VARCHAR(500) NOT NULL,
+ example_en TEXT NOT NULL,
+ UNIQUE KEY uk_expression_sort (lesson_id,sort_order),
+ CONSTRAINT fk_expression_lesson FOREIGN KEY (lesson_id) REFERENCES sf_lesson(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE sf_exercise (
+ id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ lesson_id BIGINT UNSIGNED NOT NULL,
+ sort_order INT NOT NULL,
+ exercise_type VARCHAR(30) NOT NULL,
+ question_en TEXT NOT NULL,
+ question_zh TEXT NOT NULL,
+ reference_answer TEXT NOT NULL,
+ UNIQUE KEY uk_exercise_sort (lesson_id,sort_order),
+ CONSTRAINT fk_exercise_lesson FOREIGN KEY (lesson_id) REFERENCES sf_lesson(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE sf_step_progress (
+ id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ user_id BIGINT UNSIGNED NOT NULL,
+ lesson_id BIGINT UNSIGNED NOT NULL,
+ step VARCHAR(30) NOT NULL,
+ completed BOOLEAN NOT NULL DEFAULT FALSE,
+ updated_at DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
+ UNIQUE KEY uk_step_progress (user_id, lesson_id, step),
+ CONSTRAINT fk_progress_user FOREIGN KEY (user_id) REFERENCES sf_user(id),
+ CONSTRAINT fk_progress_lesson FOREIGN KEY (lesson_id) REFERENCES sf_lesson(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE sf_speaking_attempt (
+ id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ user_id BIGINT UNSIGNED NOT NULL,
+ exercise_id BIGINT UNSIGNED NOT NULL,
+ transcript TEXT NOT NULL,
+ feedback_json JSON NOT NULL,
+ feedback_mode VARCHAR(20) NOT NULL,
+ created_at DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+ KEY idx_attempt_user_created (user_id,created_at),
+ CONSTRAINT fk_attempt_user FOREIGN KEY (user_id) REFERENCES sf_user(id),
+ CONSTRAINT fk_attempt_exercise FOREIGN KEY (exercise_id) REFERENCES sf_exercise(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE sf_review_card (
+ id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ user_id BIGINT UNSIGNED NOT NULL,
+ word_id BIGINT UNSIGNED NOT NULL,
+ next_review_at DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+ interval_days INT NOT NULL DEFAULT 1,
+ remembered_count INT NOT NULL DEFAULT 0,
+ UNIQUE KEY uk_review_card_user_word (user_id,word_id),
+ KEY idx_review_due (user_id,next_review_at),
+ CONSTRAINT fk_review_user FOREIGN KEY (user_id) REFERENCES sf_user(id),
+ CONSTRAINT fk_review_word FOREIGN KEY (word_id) REFERENCES sf_lesson_word(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

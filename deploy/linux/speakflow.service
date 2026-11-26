@@ -1,0 +1,28 @@
+[Unit]
+Description=SpeakFlow Spring Boot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=speakflow
+Group=speakflow
+WorkingDirectory=/opt/speakflow
+EnvironmentFile=/etc/speakflow/speakflow.env
+Environment=SERVER_ADDRESS=127.0.0.1
+Environment=SERVER_PORT=8080
+Environment=AUDIO_DIRECTORY=/var/lib/speakflow/audio
+ExecStart=/usr/bin/java -Xms128m -Xmx512m -jar /opt/speakflow/server.jar
+Restart=on-failure
+RestartSec=5
+SuccessExitStatus=143
+StateDirectory=speakflow
+UMask=0027
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/var/lib/speakflow
+
+[Install]
+WantedBy=multi-user.target

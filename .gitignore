@@ -1,0 +1,17 @@
+.env
+.env.*
+!.env.example
+**/node_modules/
+**/dist/
+**/target/
+**/.idea/
+**/.vscode/
+*.log
+.DS_Store
+
+/audio-cache/
+/server/audio-cache/
+/server/target/
+/web/dist/
+/web/node_modules/
+/release-images/

@@ -1,0 +1,55 @@
+services:
+  db:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: speakflow
+      MYSQL_USER: speakflow
+      MYSQL_PASSWORD: ${DB_PASSWORD:?Please set DB_PASSWORD in .env}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Please set MYSQL_ROOT_PASSWORD in .env}
+      TZ: UTC
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_0900_ai_ci
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "127.0.0.1:3306:3306"
+    healthcheck:
+      test: ["CMD-SHELL","mysqladmin ping -h 127.0.0.1 -u root -p\"$$MYSQL_ROOT_PASSWORD\" --silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 25
+  server:
+    build: ./server
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: speakflow
+      DB_USERNAME: speakflow
+      DB_SSL_MODE: ${DB_SSL_MODE:-DISABLED}
+      DB_PASSWORD: ${DB_PASSWORD:?Please set DB_PASSWORD in .env}
+      APP_ADMIN_USERNAME: ${APP_ADMIN_USERNAME:-admin}
+      APP_ADMIN_PASSWORD: ${APP_ADMIN_PASSWORD:?Please set APP_ADMIN_PASSWORD in .env}
+      AI_PROVIDER: ${AI_PROVIDER:-local}
+      AI_API_KEY: ${AI_API_KEY:-}
+      AI_MODEL: ${AI_MODEL:-gpt-4.1-mini}
+      AI_TTS_MODEL: ${AI_TTS_MODEL:-tts-1}
+      AI_ASR_MODEL: ${AI_ASR_MODEL:-whisper-1}
+      AI_TTS_VOICE: ${AI_TTS_VOICE:-alloy}
+      AI_BASE_URL: ${AI_BASE_URL:-https://api.openai.com}
+      AUDIO_DIRECTORY: /app/audio
+    volumes:
+      - audio_cache:/app/audio
+  web:
+    build: ./web
+    restart: unless-stopped
+    depends_on:
+      - server
+    ports:
+      - "127.0.0.1:5173:80"
+volumes:
+  audio_cache:
+  mysql_data:

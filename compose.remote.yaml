@@ -1,0 +1,36 @@
+# Optional: connect to an existing MySQL 8.0 server. No credentials are embedded.
+# Copy .env.remote.example to .env, edit it, then:
+# docker compose -f compose.remote.yaml up --build -d
+services:
+  server:
+    build: ./server
+    restart: unless-stopped
+    environment:
+      DB_HOST: ${DB_HOST:?Set DB_HOST in .env}
+      DB_PORT: ${DB_PORT:-3306}
+      DB_NAME: ${DB_NAME:-speakflow}
+      DB_USERNAME: ${DB_USERNAME:?Set a dedicated MySQL account}
+      DB_SSL_MODE: ${DB_SSL_MODE:-DISABLED}
+      DB_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in .env}
+      APP_ADMIN_USERNAME: ${APP_ADMIN_USERNAME:-admin}
+      APP_ADMIN_PASSWORD: ${APP_ADMIN_PASSWORD:?Set APP_ADMIN_PASSWORD in .env}
+      AI_PROVIDER: ${AI_PROVIDER:-local}
+      AI_API_KEY: ${AI_API_KEY:-}
+      AI_MODEL: ${AI_MODEL:-gpt-4.1-mini}
+      AI_TTS_MODEL: ${AI_TTS_MODEL:-tts-1}
+      AI_ASR_MODEL: ${AI_ASR_MODEL:-whisper-1}
+      AI_TTS_VOICE: ${AI_TTS_VOICE:-alloy}
+      AI_BASE_URL: ${AI_BASE_URL:-https://api.openai.com}
+      AUDIO_DIRECTORY: /app/audio
+    volumes:
+      - audio_cache:/app/audio
+  web:
+    build: ./web
+    restart: unless-stopped
+    depends_on:
+      - server
+    ports:
+      - "127.0.0.1:5173:80"
+
+volumes:
+  audio_cache:
